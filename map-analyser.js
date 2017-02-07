@@ -35,7 +35,11 @@ function processHtml() {
 
   console.log('Done.');
 
-  console.log(fccMap);
+  console.log('Storing map data on the data.json file...');
+
+  fs.writeFile('data.json', JSON.stringify(fccMap), function(err) {
+    console.log('Done.')
+  });
 }
 
 if (process.argv.indexOf('-f') != -1) {
