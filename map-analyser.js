@@ -9,9 +9,17 @@ function processHtml() {
 
   console.log('Done.');
 
+  var fccMap = [];
+
   $('h2 a').each(function(index, element) {
-    console.log(element.children[1].data);
+    var mainTitle = element.children[1].data;
+    var obj = {};
+    obj[mainTitle] = {};
+
+    fccMap.push(obj);
   });
+
+  console.log(fccMap);
 }
 
 if (process.argv.indexOf('-f') != -1) {
