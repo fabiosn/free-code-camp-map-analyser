@@ -30,6 +30,14 @@ function processHtml() {
       }
 
       fccMap[mainTitle][subTitle].minutes = time;
+
+      fccMap[mainTitle][subTitle].challenges = {};
+
+      $(element.attribs.href + ' .challenge-title a').each(function(index, element) {
+        var challengeTitle = element.children[0].children[0].data;
+
+        fccMap[mainTitle][subTitle].challenges[challengeTitle] = {};
+      });
     });
   });
 
