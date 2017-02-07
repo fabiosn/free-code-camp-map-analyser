@@ -2,7 +2,21 @@ const fs = require('fs');
 const request = require('request');
 const cheerio = require('cheerio');
 
-if (process.argv.indexOf('-f')) {
+function processHtml() {
+  console.log('Reading file...');
+
+  const $ = cheerio.load(fs.readFileSync('map.html', 'utf8'));
+
+  console.log('Done.');
+
+  $('h2 a').each(function(index, element) {
+    console.log(element.children[1].data);
+  });
+}
+
+if (process.argv.indexOf('-f') != -1) {
+  console.log(process.argv.indexOf('-f'));
+
   if (fs.exists('map.html')) {
     fs.unlinkSync('map.html');
   }
@@ -15,15 +29,9 @@ if (process.argv.indexOf('-f')) {
       .on('close', function() {
         console.log('Done.');
 
-        console.log('Reading file...');
-
-        const $ = cheerio.load(fs.readFileSync('map.html', 'utf8'));
-
-        console.log('Done.');
-
-        $('h2 a').each(function(index, element) {
-          console.log(element.children[1].data);
-        });
+        processHtml();
       })
     );
+} else {
+  processHtml();
 }
