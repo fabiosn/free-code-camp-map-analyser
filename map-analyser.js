@@ -22,6 +22,14 @@ function processHtml() {
       var subTitle = element.children[1].data;
 
       fccMap[mainTitle][subTitle] = {};
+
+      var time = parseInt(element.next.children[0].data.match(/\d+/)[0]);
+
+      if (element.next.children[0].data.search('hours') != -1) {
+        time *= 60;
+      }
+
+      fccMap[mainTitle][subTitle].minutes = time;
     });
   });
 
