@@ -20,6 +20,10 @@ if (process.argv.indexOf('-f')) {
         const $ = cheerio.load(fs.readFileSync('map.html', 'utf8'));
 
         console.log('Done.');
+
+        $('h2 a').each(function(index, element) {
+          console.log(element.children[1].data);
+        });
       })
     );
 }
