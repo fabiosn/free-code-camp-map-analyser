@@ -9,15 +9,17 @@ function processHtml() {
 
   console.log('Done.');
 
-  var fccMap = [];
+  console.log('Parsing html...');
+
+  var fccMap = {};
 
   $('h2 a').each(function(index, element) {
     var mainTitle = element.children[1].data;
-    var obj = {};
-    obj[mainTitle] = {};
 
-    fccMap.push(obj);
+    fccMap[mainTitle] = {}
   });
+
+  console.log('Done.');
 
   console.log(fccMap);
 }
