@@ -17,6 +17,12 @@ function processHtml() {
     var mainTitle = element.children[1].data;
 
     fccMap[mainTitle] = {}
+
+    $(element.attribs.href + ' h3 a').each(function(index, element) {
+      var subTitle = element.children[1].data;
+
+      fccMap[mainTitle][subTitle] = {};
+    });
   });
 
   console.log('Done.');
