@@ -1,5 +1,6 @@
 const fs = require('fs');
 const request = require('request');
+const cheerio = require('cheerio');
 
 if (process.argv.indexOf('-f')) {
   if (fs.exists('map.html')) {
@@ -12,6 +13,12 @@ if (process.argv.indexOf('-f')) {
     .pipe(
       fs.createWriteStream('map.html')
       .on('close', function() {
+        console.log('Done.');
+
+        console.log('Reading file...');
+
+        const $ = cheerio.load(fs.readFileSync('map.html', 'utf8'));
+
         console.log('Done.');
       })
     );
